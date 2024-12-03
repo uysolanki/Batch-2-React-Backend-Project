@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ECommerce System</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Product</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/customers}">Product</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center"> Create New Product </h1>
+				<div class="card-body">
+					<form th:action="@{/saveProduct}" th:object="${prod}" method="POST">
+						<div class="form-group">
+							<label>Product Title </label>
+							<input type="text" name="productTitle" th:field="*{title}" class="form-control"
+								placeholder="Product Title" />
+						</div>
+
+						<div class="form-group">
+							<label>Product Price </label>
+							<input type="text" name="productPrice" th:field="*{price}" class="form-control"
+								placeholder="Enter Product Price" />
+						</div>
+
+						<div class="form-group">
+							<label> Product Description </label>
+							<input type="text" name="productDescription" th:field="*{description}" class="form-control"
+								placeholder="Enter PProduct Description" />
+						</div>
+						
+						<div class="form-group">
+							<label> Product Image </label>
+							<input type="text" name="image" th:field="*{image}" class="form-control"
+								placeholder="Product Image " />
+						</div>
+						<div class="form-group">
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" id="pathogens1"
+										th:field="*{category}" value="Mens">
+									<label class="custom-control-label" for="pathogens1">Mens</label>
+								</div>
+
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" id="pathogens2"
+										th:field="*{category}" value="Women" checked="checked">
+									<label class="custom-control-label" for="pathogens2">Women</label>
+								</div>
+
+						</div>
+						
+
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">
+								Add Product
+							</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
