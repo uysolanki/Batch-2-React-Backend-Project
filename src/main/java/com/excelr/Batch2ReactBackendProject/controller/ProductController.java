@@ -1,16 +1,19 @@
 package com.excelr.Batch2ReactBackendProject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.excelr.Batch2ReactBackendProject.entity.Product;
 import com.excelr.Batch2ReactBackendProject.service.ProductService;
 
-@Controller
+@RestController
 public class ProductController {
 
 	@Autowired
@@ -25,9 +28,16 @@ public class ProductController {
 		
 	}
 	@PostMapping("/saveProduct")
-	public String addProduct(@ModelAttribute Product product)
+	public Product addProduct(@RequestBody Product product)
 	{
-		productService.addProduct(product);
-		return "Product-Added-Successfully";
+		 System.out.println("Received product: " + product);
+		return productService.addProduct(product);
+		//return "Product";
+	}
+	
+	@GetMapping("/products")
+	public List<Product> getAllProducts()
+	{
+		return productService.getAllProducts();
 	}
 }
